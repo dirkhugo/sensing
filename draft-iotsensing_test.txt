@@ -123,7 +123,10 @@ Internet-Draft        IoT Sensing Problem Statement       September 2021
    [Henning].  802.11bf sensing project provides proper framework for
    hardware based authentication because 802.11 or Wi-Fi devices are
    more and more diverse spanning from personal computers, smartphones,
-   televisions, tablets and all sorts of IoT devices or sensors.
+   televisions, tablets and all sorts of IoT devices or sensors, including
+   passengers and drivers in vehicles and other road users which have to
+   exchange traffic messages, e.g., for safety and efficiency reasons (see
+   ITS, Intelligent Traffic Systems].
 
    TGbf Wi-Fi Sensing (SENS) is achieved by signaling between just an
    initiator and a responder.  TGbf may also define more effective
@@ -290,8 +293,9 @@ Internet-Draft        IoT Sensing Problem Statement       September 2021
    components.  On all levels of handling these data, i.e., storage,
    processing, and transport via a communication network, the integrity
    of the content has to be preserved.
-   On the other hand, any unintended authentication request should be
-   prevented to minimize the risk of occasional attachment to 
+   
+   One should keep in mind, that any unintended authentication request
+   should be prevented to minimize the risk of occasional attachment to 
    networks and subsequent exposure to attack to sensitive user data.
 
 6.1.  Architectural and Procedural Issues for Future IP-based IoT-
@@ -315,23 +319,24 @@ Internet-Draft        IoT Sensing Problem Statement       September 2021
 
    When compared to a fully certificate-based authentication, however, a
    hardware-based AAA mechanism relying e.g., on WiFi sensing gesture
-  detection does not require the user to know any key, identifier, or
-  password for the device to be authenticated.  A pre-defined type of access
-  to the device (e.g., physical, photographic or video representation,
-  unique description in terms of parameters, etc.) shall be sufficient for
-  authentication.
+   detection does not require the user to know any key, identifier, or
+   password for the device to be authenticated.  A pre-defined type of access
+   to the device (e.g., physical, photographic or video representation,
+   unique description in terms of parameters, etc.) shall be sufficient for
+   authentication.
 
-  Similar to what the Extensible Authentication Protocol (EAP) providing an
-  authentication framework supporting multiple authentication methods we try
-  to generalize an AAA over any layer not requiring pre-authentication.  
+   Similar to what the Extensible Authentication Protocol (EAP) providing an
+   authentication framework supporting multiple authentication methods we try
+   to generalize an AAA over any layer not requiring pre-authentication.  
 
 
-  IoT device        WiFi Sensing AP       AAA Client         AAA-Server
-       |                   |                   |                  |       
-       |<---- token -----> |                   |                  | 
-       |                   |<- identity data ->|                  |
-       |                   |                   |-- AAA Request -->|
-       |                   |                   |<- AAA-Response --|
+   IoT device        WiFi Sensing AP       AAA Client         AAA-Server
+        |                   |                   |                  |       
+        |<---- token -----> |                   |                  | 
+        |                   |<- identity data ->|                  |
+        |                   |                   |-- AAA Request -->|
+        |                   |                   |<- AAA-Response --|
+       
       Figure 1: Schematic representation of Authentication procedure
 
    The AAA method is intended for authenticating all kind of Internet-of-
@@ -341,7 +346,58 @@ Internet-Draft        IoT Sensing Problem Statement       September 2021
    The exemplary WiFi sensing client at the AP recognizes the device and
    the attached authentication client contacts the AAA server for the
    authentication request/response exchange.  
-   [to be continued]
+  
+   [RFC8995] on ‘Bootstrapping Remote Secure Key Infrastructure’ (BRSKI)
+   deals with authentication of devices, including sending authorizations to
+   the device as to what network they should join, and how to authenticate
+   that network by specifying automated bootstrapping of an Autonomic
+   Control Plane (ACP).
+   Secure Key Infrastructure (SKI) bootstrapping using manufacturer-
+   installed X.509 certificates combined with a manufacturer's authorizing
+   service, both online and offline, is called the Bootstrapping Remote
+   Secure Key Infrastructure (BRSKI) protocol.  Bootstrapping a new device
+   can occur when using a routable address and a cloud service, only link-
+   local connectivity, or limited/disconnected networks and includes support
+   for deployment models with less stringent security requirements.  When
+   the cryptographic identity of the new SKI is successfully deployed to the
+   device, completion of bootstrapping is achieved.  A locally issued
+   certificate can be deployed to the device via the established secure
+   connection as well.
+   
+   [draft-richardson-anima-masa-considerations] (expired) on Operational
+   Considerations for Voucher infrastructure for BRSKI MASA describes and
+   defines several operational modes that a BRSKI Manufacturer Authorized
+   Signing Authority (MASA) may take on.  Each mode is assessed in terms of
+   relevance and applicability per type of organization the MASA is deployed
+   into.  The document is mostly about IDevID (Initial Device Identifier)
+   and other related trust anchors such that devices can later be
+   authenticated.
+
+   [draft-richardson-t2trg-idevid-considerations] on a taxonomy of
+   operational security of manufacturer installed keys and anchors is
+   dealing with how the PKI used for above can be evaluated.
+
+   [draft-richardson-anima-registrar-considerations] (expired) on
+   Operational Considerations for BRSKI Registrar describes how an
+   operator builds and manages the infrastructure to authenticate devices.
+
+   [draft-irtf-t2trg-secure-bootstrapping-00] on ‘Secure IoT Bootstrapping:
+   A Survey’ provides an overview of the various terms that are used when
+   discussing bootstrapping of IoT devices and presents an overview of
+   secure bootstrapping mechanisms available for smart objects that are part
+   of an Internet of Things (IoT) network in terms of different options to
+   choose from, depending on their use-case, security requirements, and the
+   user interface available on their IoT devices.
+
+   [draft-ietf-emu-eap-noob-06] on Nimble out-of-band authentication for EAP
+   (EAP-NOOB) defines both an authentication method and key derivation.  The
+   EAP method is intended for bootstrapping all kinds of Internet-of-Things
+   (IoT) devices that have no pre-configured authentication credentials.
+
+   Today, most vertically integrated systems deploy static keys to the devices
+   to authenticate the "cloud" service to the IoT device.  Whether or not they
+   authenticate the device at all is often unknown without an NDA.
+
 
 7.  IANA Considerations
 
@@ -405,6 +461,20 @@ von Hugo & Sarikaya       Expires March 6, 2022                 [Page 7]
 Internet-Draft        IoT Sensing Problem Statement       September 2021
 
 
+   [draft-richardson-anima-masa-considerations]
+   [draft-richardson-t2trg-idevid-considerations] 
+   [draft-richardson-anima-registrar-considerations]  
+   [draft-ietf-emu-eap-noob-06]
+     T. Aura
+Internet-Draft                                          Aalto University
+Intended status: Standards Track                                M. Sethi
+Expires: March 7, 2022                                          Ericsson
+                                                             A. Peltonen
+                                                        Aalto University
+                                                       September 3, 2021
+
+          Nimble out-of-band authentication for EAP (EAP-NOOB)
+                       draft-ietf-emu-eap-noob-06
    [FURQAN]   Furqan, H., Solaija, M., Tuerkmen, H., and H. Arslan,
               "Wireless Communication, Sensing, and REM: A Security
               Perspective", IEEE Open Journal of the Communications

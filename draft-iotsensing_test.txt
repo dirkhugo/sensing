@@ -337,8 +337,7 @@ Table of Contents
    certificate can be deployed to the device via the established secure
    connection as well.
    
-   [masa] describes and
-   defines several operational modes that a BRSKI Manufacturer Authorized
+   [masa] describes and defines several operational modes that a BRSKI Manufacturer Authorized
    Signing Authority (MASA) may take on.  Each mode is assessed in terms of
    relevance and applicability per type of organization the MASA is deployed
    into.  The document is mostly about IDevID (Initial Device Identifier)
@@ -346,12 +345,10 @@ Table of Contents
    authenticated.
 
    [idevid] provides a taxonomy of operational security of manufacturer
-   installed keys and anchors and is
-   dealing with how the PKI used for above can be evaluated.
+   installed keys and anchors and is dealing with how the PKI used for above can be evaluated.
 
    [registra] details Operational Considerations for BRSKI Registrar
-   describing how an
-   operator builds and manages the infrastructure to authenticate devices.
+   describing how an operator builds and manages the infrastructure to authenticate devices.
 
    [bootstr] gives an overview of the various terms that are used when
    discussing bootstrapping of IoT devices and presents an overview of
@@ -361,8 +358,8 @@ Table of Contents
    user interface available on their IoT devices.
 
    [eap-noob] on Nimble out-of-band authentication for EAP (EAP-NOOB) defines
-   both an authentication method and key derivation.  The
-   EAP method is intended for bootstrapping all kinds of Internet-of-Things
+   both an authentication method and key derivation.  The EAP (Extensible Authentication Protocol)
+   method, defined in RFC 3748 [RFC3748], is intended for bootstrapping all kinds of Internet-of-Things
    (IoT) devices that have no pre-configured authentication credentials.
 
    Today, most vertically integrated systems deploy static keys to the devices
@@ -517,6 +514,8 @@ Table of Contents
               Physical Layer: System Challenges and Applications to 5G
               and Beyond,", IEEE Communications Magazine, vol. 58,
               no. 10, pp. 58-64, 2020.
+              
+  [rfc3748]   https://datatracker.ietf.org/doc/html/rfc3748
 
    [RFC8576]  Garcia-Morchon O., Kumar, S., and M. Sethi, "Internet of
               Things (IoT) Security: State of the Art and Challenges",
